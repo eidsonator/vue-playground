@@ -2,6 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <button @click="fetchData" type="button">New Joke</button>
+    <input v-model="firstName">
+    <input v-model="lastName">
   </div>
 </template>
 
@@ -10,7 +12,9 @@ export default {
   name: 'HelloWorld',
   data: function () {
     return {
-      msg: 'Joke Loading...'
+      msg: 'Joke Loading...',
+      firstName: 'Todd',
+      lastName: 'Eidson'
     }
   },
   created () {
@@ -26,8 +30,8 @@ export default {
       .then((data) => {
         console.log(data)
         this.msg = JSON.parse(data)['value']
-          .replace(/chuck/gi, 'Todd')
-          .replace(/norris/gi, 'Eidson')
+          .replace(/chuck/gi, this.firstName)
+          .replace(/norris/gi, this.lastName)
       })
     }
   }
